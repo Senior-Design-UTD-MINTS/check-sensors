@@ -1,12 +1,23 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
+import os
+import sys
+
+# Update location with where you downloaded PhantomJS (https://phantomjs.org/download.html)
+PHANTOMJS_PATH_ENV_VAR = "PHANTOMJS_INSTALL"
 
 
-def getSensors():
+def get_phantomJS_path():
+    executable_path = os.environ.get(PHANTOMJS_PATH_ENV_VAR)
+    if executable_path is None:
+        sys.exit("Error: System needs to have the environment variable {} set to where phantomJS is installed on your system".format(
+            PHANTOMJS_PATH_ENV_VAR))
+    else:
+        return executable_path
 
-    # Update location with where you downloaded PhantomJS (https://phantomjs.org/download.html)
-    driver = webdriver.PhantomJS(
-        '/Users/kameron/Downloads/phantomjs-2.1.1-macosx/bin/phantomjs')
+
+def get_sensors(phantomjs_path):
+    driver = webdriver.PhantomJS(phantomjs_path)
     driver.get('http://mintsdata.utdallas.edu:4200/files#/')
 
     html = driver.page_source
