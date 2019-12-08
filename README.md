@@ -8,3 +8,4 @@ __**HOW TO SET UP Check-Sensors**__
 
 4. Run script with Python3 or Anaconda
 
+** NOTE: This script is usually working in tandem with another (i.e. auto-ingestions) **
